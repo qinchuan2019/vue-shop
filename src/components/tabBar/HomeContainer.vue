@@ -70,13 +70,13 @@ export default {
     height: 200px;
     .mint-swipe-item{
         &:nth-child(1){
-
+            background-color: #fff;
         }
         &:nth-child(2){
-
+            background-color: #000;
         }
         &:nth-child(3){
-
+            background-color: #aaa;
         }
         img{
             width: 100%;
