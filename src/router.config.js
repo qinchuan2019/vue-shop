@@ -8,6 +8,9 @@ import SearchContainer from './components/tabBar/SearchContainer.vue'
 var router = new VueRouter({
   routes:[   
     {
+      path:'/',redirect:'/home'
+    },
+    {
       path:'/home',
       component:HomeContainer
     },

@@ -3,7 +3,9 @@
         <!-- Header区域 -->
         <mt-header fixed title="vue-shop"></mt-header>
 
-        <router-view></router-view>
+        <transition name="main">
+            <router-view></router-view>
+        </transition>
 
         <!-- 底部TabBar区域 -->
         <nav class="mui-bar mui-bar-tab">
@@ -35,6 +37,23 @@
 <style lang="scss" scoped>
 .app-container{
     padding-top: 40px;
+    overflow-x: hidden;
+}
+
+.main-enter{
+    opacity: 0;
+    transform: translateX(100%)
+}
+
+.main-leave-to{
+    opacity: 0;
+    transform: translateX(-100%);
+    position: absolute;
+}
+
+.main-enter-active,
+.main-leave-active{
+    transition: all 0.5s ease;
 }
 </style>
 
