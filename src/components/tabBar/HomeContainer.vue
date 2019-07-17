@@ -46,6 +46,7 @@
                 </router-link>
             </li>
         </ul>
+        <button class="mui-btn mui-btn-primary" @click="getById(187)">删除测试</button>
     </div>
 </template>
 
@@ -61,7 +62,6 @@ Mock.mock('getList',{
         'image':'@image()'
     }]
 })
-
 export default {
     data(){
         return {

@@ -2,7 +2,7 @@
     <div>
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in newsList" :key="item.id">
-                <a href="javascript:;">
+                <router-link :to="'/home/newsInfo/' + item.id">
                     <img class="mui-media-object mui-pull-left" :src="item.img_url">
                     <div class="mui-media-body">
                         <h1>{{item.title}}</h1>
@@ -11,7 +11,7 @@
                             <span>点击了{{item.click}}次</span>
                         </p>
                     </div>
-                </a>
+                </router-link>
             </li>
         </ul>
     </div>
@@ -25,7 +25,7 @@ import Mock from '../../lib/mock/mock.js'
 Mock.mock('getNewsList',{
     "code":0,
     "message":"请求成功",
-    "data|7":[{
+    "data|17":[{
         "id|+1":187,
         'img_url':'@image()',
         "title": "@ctitle(3,7)",
