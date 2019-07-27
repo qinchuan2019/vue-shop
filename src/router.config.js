@@ -5,6 +5,7 @@ import MemberContainer from './components/tabBar/MemberContainer.vue'
 import CartContainer from './components/tabBar/CartContainer.vue'
 import SearchContainer from './components/tabBar/SearchContainer.vue'
 import NewsList from './components/news/NewsList.vue'
+import NewsInfo from './components/news/NewsInfo.vue'
 
 var router = new VueRouter({
   routes:[   
@@ -30,6 +31,10 @@ var router = new VueRouter({
     {
       path:'/home/newsList',
       component:NewsList
+    },
+    {
+      path:'/home/newsinfo/:title/:add_time/:click/:zhaiyao',
+      component:NewsInfo
     }
   ],
   linkActiveClass:'mui-active'
