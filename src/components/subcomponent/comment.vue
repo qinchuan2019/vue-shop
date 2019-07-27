@@ -3,7 +3,7 @@
         <h3>发表评论</h3>
         <hr>
         <textarea placeholder="请输入要发表的内容(最多可输入120字)" maxlength="120"></textarea>
-        <mt-button type="primary" size="large">发表评论</mt-button>
+        <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
 
         <div class="cmt-list">
             <div class="cmt-item">
@@ -14,31 +14,42 @@
                     意装龙始行现因点然层较并务置于。单老现对示示亲形义眼界力精安
                 </div>
             </div>
-            <div class="cmt-item">
-                <div class="cmt-title">
-                    第1楼&nbsp;&nbsp;用户:匿名用户&nbsp;&nbsp;发表时间:2019-12-12 12:12:12
-                </div>
-                <div class="cmt-body">
-                    意装龙始行现因点然层较并务置于。单老现对示示亲形义
-                </div>
-            </div>
-            <div class="cmt-item">
-                <div class="cmt-title">
-                    第1楼&nbsp;&nbsp;用户:匿名用户&nbsp;&nbsp;发表时间:2019-12-12 12:12:12
-                </div>
-                <div class="cmt-body">
-                    意装龙始行现因点然层较并务置于。单老现对示示亲形义眼界力示亲形义眼界力示亲形义眼界力示亲形义眼界力精安
-                </div>
-            </div>
         </div>
 
-        <mt-button type="danger" plain size="large">加载更多</mt-button>
+        <mt-button type="danger" plain size="large" @click="loadMore">加载更多</mt-button>
     </div>
 </template>
 
 <script>
+import {Toast} from 'mint-ui'
 export default {
-    
+    data(){
+        return {
+            newsComments:[]
+        }
+    },
+    methods:{
+        getNewsComments(){
+            this.$http.get('getNewsCommentsById').then(result => {
+                if(result.body.code === 0){
+
+                }else{
+                    Toast('获取新闻评论失败！');
+                }
+            }).then(function(){
+
+            })
+        },
+        loadMore(){
+
+        },
+        postComment(){
+
+        }
+    },
+    created(){
+        this.getNewsComments();
+    }
 }
 </script>
 
