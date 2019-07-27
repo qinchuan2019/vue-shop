@@ -36,8 +36,8 @@ var router = new VueRouter({
       path:'/home/newsinfo/:title/:add_time/:click/:zhaiyao',
       component:NewsInfo
     }
-  ],
-  linkActiveClass:'mui-active'
+  ]
+  // linkActiveClass:'mui-active'
 })
 
 export default router;

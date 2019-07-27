@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 import comment from '../subcomponent/comment.vue'
 
 // import Mock from '../../lib/mock/mock.js'
@@ -79,4 +78,3 @@ export default {
     }
 }
 </style>
-

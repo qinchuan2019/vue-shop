@@ -61,7 +61,6 @@ Mock.mock('getList',{
         'image':'@image()'
     }]
 })
-
 export default {
     data(){
         return {
