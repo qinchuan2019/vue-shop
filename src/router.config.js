@@ -6,6 +6,8 @@ import CartContainer from './components/tabBar/CartContainer.vue'
 import SearchContainer from './components/tabBar/SearchContainer.vue'
 import NewsList from './components/news/NewsList.vue'
 import NewsInfo from './components/news/NewsInfo.vue'
+import ImageList from './components/images/ImageList.vue'
+import ImageInfo from './components/images/ImageInfo.vue'
 
 var router = new VueRouter({
   routes:[   
@@ -15,6 +17,22 @@ var router = new VueRouter({
     {
       path:'/home',
       component:HomeContainer
+    },
+    {
+      path:'/home/newsList',
+      component:NewsList
+    },
+    {
+      path:'/home/newsinfo/:title/:add_time/:click/:zhaiyao/:id',
+      component:NewsInfo
+    },
+    {
+      path:'/home/imageList',
+      component:ImageList
+    },
+    {
+      path:'/home/imageInfo',
+      component:ImageInfo
     },
     {
       path:'/member',
@@ -27,17 +45,9 @@ var router = new VueRouter({
     {
       path:'/search',
       component:SearchContainer
-    },
-    {
-      path:'/home/newsList',
-      component:NewsList
-    },
-    {
-      path:'/home/newsinfo/:title/:add_time/:click/:zhaiyao',
-      component:NewsInfo
-    }
-  ]
-  // linkActiveClass:'mui-active'
+    }    
+  ],
+  linkActiveClass:'mui-active'
 })
 
 export default router;

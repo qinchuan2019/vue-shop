@@ -1,17 +1,17 @@
 <template>
     <div class="cmt-container">
-        <h3>发表评论</h3>
+        <h3>发表评论{{ id }}</h3>
         <hr>
-        <textarea placeholder="请输入要发表的内容(最多可输入120字)" maxlength="120"></textarea>
+        <textarea v-model="content_msg" placeholder="请输入要发表的内容(最多可输入120字)" maxlength="120"></textarea>
         <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
 
         <div class="cmt-list">
-            <div class="cmt-item">
+            <div class="cmt-item" v-for="(item,index) in newsComments" :key="item.username">
                 <div class="cmt-title">
-                    第1楼&nbsp;&nbsp;用户:匿名用户&nbsp;&nbsp;发表时间:2019-12-12 12:12:12
+                    第{{1 + index}}楼&nbsp;&nbsp;用户:{{item.user_name}}&nbsp;&nbsp;发表时间:{{item.add_time}}
                 </div>
                 <div class="cmt-body">
-                    意装龙始行现因点然层较并务置于。单老现对示示亲形义眼界力精安
+                    {{item.content}}
                 </div>
             </div>
         </div>
@@ -25,26 +25,45 @@ import {Toast} from 'mint-ui'
 export default {
     data(){
         return {
-            newsComments:[]
+            newsComments:[],
+            content_msg:'',
+            user_name:'默认用户'
         }
     },
+    props:[
+        'id'
+    ],
     methods:{
         getNewsComments(){
             this.$http.get('getNewsCommentsById').then(result => {
                 if(result.body.code === 0){
-
+                    this.newsComments = this.newsComments.concat(result.body.data);
                 }else{
                     Toast('获取新闻评论失败！');
                 }
-            }).then(function(){
-
             })
         },
         loadMore(){
-
+            this.getNewsComments()
         },
         postComment(){
-
+            var content_obj = {
+                content:this.content_msg,
+                add_time:Date.now(), 
+                user_name:this.user_name        
+            }
+            if(this.content_msg.trim().length === 0){
+                Toast('请输入评论内容！');
+            }else{      
+                this.newsComments.unshift(content_obj)       
+                // this.$http.post('postComment/' + this.$route.params.id,content_obj).then(result => {
+                //     if(result.body.code === 0){
+                //         this.newsComments.unshift(content_obj)
+                //     }else{
+                //         Toast('提交评论失败!');
+                //     }
+                // })
+            }
         }
     },
     created(){

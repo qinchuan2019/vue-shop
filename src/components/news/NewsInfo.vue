@@ -13,7 +13,7 @@
             {{zhaiyao}}
         </div>
         <!-- 评论 -->
-        <comment></comment>
+        <comment :id="id"></comment>
     </div>
 </template>
 
@@ -38,7 +38,8 @@ export default {
             title:this.$route.params.title,
             add_time:this.$route.params.add_time,
             click:this.$route.params.click,
-            zhaiyao:this.$route.params.zhaiyao
+            zhaiyao:this.$route.params.zhaiyao,
+            id:this.$route.params.id
         }
     },
     methods:{
