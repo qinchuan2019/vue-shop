@@ -1,10 +1,7 @@
 <template>
     <div>
-        <mt-swipe :auto="3000">
-            <mt-swipe-item v-for="item in lunbotuList" :key="item.image">
-                <img :src="item.image" />
-            </mt-swipe-item>
-        </mt-swipe>
+
+        <swipe :lunbotuList="lunbotuList" :timedelay="3000"></swipe>
 
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
@@ -22,7 +19,7 @@
                 </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-                <router-link to="">
+                <router-link to="/home/goodsList">
                     <span class="mui-icon mui-icon-chatbubble"></span>
                     <div class="mui-media-body">商品购买</div>
                 </router-link>
@@ -52,7 +49,7 @@
 <script>
 
 import Mock from '../../lib/mock/mock.js'
-import {Toast} from 'mint-ui'
+import swipe from '../subcomponent/swipe.vue'
 
 Mock.mock('getList',{
     "code": 0,
@@ -80,29 +77,14 @@ export default {
     },
     created(){
         this.getLunbotu()
+    },
+    components:{
+        swipe
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.mint-swipe{
-    height: 200px;
-    .mint-swipe-item{
-        &:nth-child(1){
-            background-color: #fff;
-        }
-        &:nth-child(2){
-            background-color: #000;
-        }
-        &:nth-child(3){
-            background-color: #aaa;
-        }
-        img{
-            width: 100%;
-            height: 100%;
-        }
-    }
-}
 .mui-grid-view.mui-grid-9{
     background-color: #fff;
 }

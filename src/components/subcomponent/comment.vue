@@ -6,9 +6,9 @@
         <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
 
         <div class="cmt-list">
-            <div class="cmt-item" v-for="(item,index) in newsComments" :key="item.username">
+            <div class="cmt-item" v-for="(item,index) in comments" :key="item.username">
                 <div class="cmt-title">
-                    第{{1 + index}}楼&nbsp;&nbsp;用户:{{item.user_name}}&nbsp;&nbsp;发表时间:{{item.add_time}}
+                    第{{1 + index}}楼&nbsp;&nbsp;用户:{{item.user_name}}&nbsp;&nbsp;发表时间:{{item.add_time | timeFormat}}
                 </div>
                 <div class="cmt-body">
                     {{item.content}}
@@ -25,7 +25,7 @@ import {Toast} from 'mint-ui'
 export default {
     data(){
         return {
-            newsComments:[],
+            comments:[],
             content_msg:'',
             user_name:'默认用户'
         }
@@ -34,17 +34,18 @@ export default {
         'id'
     ],
     methods:{
-        getNewsComments(){
-            this.$http.get('getNewsCommentsById').then(result => {
+        getComments(){
+            this.$http.get('getCommentsById').then(result => {
+            //this.$http.get('getNewsCommentsById/' + this.id).then(result => {
                 if(result.body.code === 0){
-                    this.newsComments = this.newsComments.concat(result.body.data);
+                    this.comments = this.comments.concat(result.body.data);
                 }else{
                     Toast('获取新闻评论失败！');
                 }
             })
         },
         loadMore(){
-            this.getNewsComments()
+            this.getComments()
         },
         postComment(){
             var content_obj = {
@@ -55,7 +56,7 @@ export default {
             if(this.content_msg.trim().length === 0){
                 Toast('请输入评论内容！');
             }else{      
-                this.newsComments.unshift(content_obj)       
+                this.comments.unshift(content_obj)       
                 // this.$http.post('postComment/' + this.$route.params.id,content_obj).then(result => {
                 //     if(result.body.code === 0){
                 //         this.newsComments.unshift(content_obj)
@@ -67,7 +68,7 @@ export default {
         }
     },
     created(){
-        this.getNewsComments();
+        this.getComments();
     }
 }
 </script>

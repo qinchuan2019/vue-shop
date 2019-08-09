@@ -8,6 +8,8 @@ import NewsList from './components/news/NewsList.vue'
 import NewsInfo from './components/news/NewsInfo.vue'
 import ImageList from './components/images/ImageList.vue'
 import ImageInfo from './components/images/ImageInfo.vue'
+import GoodsList from './components/goods/GoodsList.vue'
+import GoodsInfo from './components/goods/GoodsInfo.vue'
 
 var router = new VueRouter({
   routes:[   
@@ -31,8 +33,17 @@ var router = new VueRouter({
       component:ImageList
     },
     {
-      path:'/home/imageInfo',
+      path:'/home/imageInfo/:id/:click/:add_time/:zhaiyao',
       component:ImageInfo
+    },
+    {
+      path:'/home/goodsList',
+      component:GoodsList
+    },   
+    {
+      path:'/home/goodsInfo/:item',
+      component:GoodsInfo,
+      name:'goodsInfo'
     },
     {
       path:'/member',
