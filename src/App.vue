@@ -1,7 +1,11 @@
 <template>
     <div class="app-container">
         <!-- Header区域 -->
-        <mt-header fixed title="vue-shop"></mt-header>
+        <mt-header fixed title="vue-shop">
+            <span @click="goBack" slot="left" v-show="isShowBackButton">
+                <mt-button icon="back">返回</mt-button>
+            </span>
+        </mt-header>
 
         <transition name="main">
             <router-view></router-view>
@@ -13,25 +17,53 @@
                 <span class="mui-icon mui-icon-home"></span>
                 <span class="mui-tab-label">首页</span>
             </router-link>
-            <router-link class="mui-tab-item-qc" to="/member">
+            <!-- <router-link class="mui-tab-item-qc" to="/member">
                 <span class="mui-icon mui-icon-contact"></span>
                 <span class="mui-tab-label">会员</span>
-            </router-link>
+            </router-link> -->
             <router-link class="mui-tab-item-qc" to="/cart">
                 <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-                    <span class="mui-badge">0</span>
+                    <span class="mui-badge">{{ $store.getters.getAllCount }}</span>
                 </span>
-                <span class="mui-tab-label">购物车</span>
+                <span class="mui-tab-label" id="badge">购物车</span>
             </router-link>
-            <router-link class="mui-tab-item-qc" to="/search">
+            <!-- <router-link class="mui-tab-item-qc" to="/search">
                 <span class="mui-icon mui-icon-search"></span>
                 <span class="mui-tab-label">搜索</span>
-            </router-link>
+            </router-link> -->
         </nav>
     </div>
 </template>
 
 <script>
+export default {
+    data(){
+        return {
+            isShowBackButton:false
+        }
+    },
+    methods:{
+        goBack(){
+            this.$router.go(-1)
+        }
+    },
+    created(){
+        if(this.$route.path === '/home'){
+            this.isShowBackButton = false;
+        }else{
+            this.isShowBackButton = true;
+        }
+    },
+    watch:{
+        '$route.path'(newVal){
+            if(newVal === '/home'){
+                this.isShowBackButton = false;
+            }else{
+                this.isShowBackButton = true;
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>
